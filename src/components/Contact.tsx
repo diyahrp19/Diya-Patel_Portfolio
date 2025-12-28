@@ -4,13 +4,13 @@ import { Mail, Github, Linkedin, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 px-6">
+    <section id="contact" className="py-16 sm:py-20 px-4 sm:px-6">
       <div className="container max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground mb-3">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Let's <span className="text-primary">Connect</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
             I'm always open to discussing new projects, opportunities, or
             collaborations
           </p>
@@ -18,24 +18,26 @@ const Contact = () => {
 
         <Card className="border-2">
           <CardContent className="pt-6">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-4">
                   Get In Touch
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-muted-foreground">
-                    <Mail className="w-5 h-5 text-primary" />
+                    <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                     <a
                       href="mailto:diyahrp05@gmail.com"
-                      className="hover:text-primary transition-colors"
+                      className="hover:text-primary transition-colors text-sm sm:text-base break-all"
                     >
                       diyahrp05@gmail.com
                     </a>
                   </div>
                   <div className="flex items-center gap-3 text-muted-foreground">
-                    <MapPin className="w-5 h-5 text-primary" />
-                    <span>Ahmedabad, Gujarat, India</span>
+                    <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-sm sm:text-base">
+                      Ahmedabad, Gujarat, India
+                    </span>
                   </div>
                 </div>
               </div>
@@ -79,7 +81,7 @@ const Contact = () => {
           </CardContent>
         </Card>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 sm:mt-12">
           <p className="text-sm text-muted-foreground">
             © 2025 Diya Patel. Built with React & Tailwind CSS.
           </p>
