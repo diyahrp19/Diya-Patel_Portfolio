@@ -83,7 +83,7 @@ const Contact = () => {
 
         <div className="text-center mt-8 sm:mt-12">
           <p className="text-sm text-muted-foreground">
-            © 2025 Diya Patel. Built with React & Tailwind CSS.
+            © 2026 Diya Patel. Built with React & Tailwind CSS.
           </p>
         </div>
       </div>
