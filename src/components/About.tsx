@@ -76,7 +76,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
               >
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 bg-white/60 backdrop-blur-sm min-h-[280px]">
+                <Card className="group border-2 border-gray-300/80 hover:border-gray-400/80 bg-white/60 backdrop-blur-sm min-h-[280px] hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300">
                   <CardContent className="pt-6">
                     <div
                       className={`w-14 h-14 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
@@ -108,7 +108,7 @@ const About = () => {
             >
               <section className="flex justify-center items-center w-full py-16">
                 <div className="w-full max-w-3xl">
-                  <Card className="border-0 bg-gradient-to-br from-white to-gray-50/50 shadow-xl">
+                  <Card className="group border-2 border-gray-300/80 hover:border-gray-400/80 bg-gradient-to-br from-white to-gray-50/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300">
                     <CardHeader className="text-center">
                       <CardTitle className="text-2xl font-bold text-gray-900">
                         My Journey

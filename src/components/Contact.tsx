@@ -51,7 +51,7 @@ const Contact = () => {
     >
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-slate-200/90 via-slate-50/70 to-zinc-200/90"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-slate-200/95 via-slate-100/80 to-zinc-200/95"></div>
         <div className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-500/25 to-purple-500/25 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-emerald-500/25 to-teal-500/25 rounded-full blur-3xl"></div>
       </div>
@@ -86,7 +86,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
               className="group"
             >
-              <Card className="border-2 border-gray-200/80 hover:border-gray-300/80 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 bg-white/90 backdrop-blur-sm w-full max-w-2xl h-full min-h-[320px]">
+              <Card className="border-2 border-gray-300/80 hover:border-gray-400/80 shadow-md hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 bg-white/90 backdrop-blur-sm w-full max-w-2xl h-full min-h-[320px]">
                 <CardHeader>
                   <CardTitle className="text-2xl font-bold text-gray-900">
                     Get In Touch
@@ -198,7 +198,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 rounded-2xl p-8 border border-white/50">
+            <div className="bg-gradient-to-r from-blue-100/55 to-purple-100/55 rounded-2xl p-8 border border-gray-300/50">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
                 Let's Build Something Amazing
               </h3>

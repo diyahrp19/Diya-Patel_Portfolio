@@ -28,7 +28,12 @@ const Hero = () => {
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
       } else {
         // Typing logic
-        setDisplayText(currentWord.substring(0, isDeleting ? displayText.length - 1 : displayText.length + 1));
+        setDisplayText(
+          currentWord.substring(
+            0,
+            isDeleting ? displayText.length - 1 : displayText.length + 1,
+          ),
+        );
       }
     }, typingSpeed);
 
@@ -39,7 +44,7 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100/85 via-slate-100/80 to-purple-100/85"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
         <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-pink-400/10 rounded-full blur-3xl transform -translate-x-1/2"></div>
@@ -54,7 +59,7 @@ const Hero = () => {
               transition={{ duration: 0.3, delay: 0.2 }}
               className="text-base sm:text-lg leading-relaxed text-foreground"
             >
-              <h1 className="text-5xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+              <h1 className="text-5xl sm:text-5xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
                 Diya Patel
               </h1>
             </motion.div>
@@ -86,7 +91,8 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-base sm:text-lg leading-relaxed text-foreground"
             >
-              Passionate about building efficient, user-friendly web applications.
+              Passionate about building efficient, user-friendly web
+              applications.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -95,8 +101,10 @@ const Hero = () => {
               className="mt-4 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/60"
             >
               <p className="text-sm sm:text-base text-gray-600 italic">
-                Turning ideas into projects using {" "}
-                <span className="text-blue-600 font-semibold">{displayText}</span>
+                Turning ideas into projects using{" "}
+                <span className="text-blue-600 font-semibold">
+                  {displayText}
+                </span>
               </p>
             </motion.div>
           </div>
@@ -126,7 +134,7 @@ const Hero = () => {
                 </a>
               </Button>
             </motion.div>
-            
+
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
@@ -144,7 +152,7 @@ const Hero = () => {
                 </a>
               </Button>
             </motion.div>
-            
+
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
@@ -169,10 +177,15 @@ const Hero = () => {
         >
           <div className="w-4 h-4 bg-blue-400/30 rounded-full"></div>
         </motion.div>
-        
+
         <motion.div
           animate={{ y: [10, -10, 10] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
           className="absolute top-40 right-10 hidden lg:block"
         >
           <div className="w-6 h-6 bg-purple-400/30 rounded-full"></div>

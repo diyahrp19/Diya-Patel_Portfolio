@@ -66,7 +66,7 @@ const Skills = () => {
     >
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100/85 via-slate-100/80 to-purple-100/85"></div>
         <div className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
       </div>
@@ -104,7 +104,7 @@ const Skills = () => {
                 transition={{ duration: 0.4 }}
                 className="group"
               >
-                <Card className="border-2 border-gray-200/80 hover:border-gray-300/80 bg-white/60 backdrop-blur-sm hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 group min-h-[320px]">
+                <Card className="border-2 border-gray-300/80 hover:border-gray-400/80 bg-white/60 backdrop-blur-sm hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 group min-h-[320px]">
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4">
                       <div
