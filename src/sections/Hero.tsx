@@ -1,50 +1,47 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Download } from "lucide-react";
-import AnimatedSection from "./AnimatedSection";
+import { Github, Linkedin, Mail } from "lucide-react";
+import AnimatedSection from "@/components/AnimatedSection";
+import { PERSONAL_INFO } from "@/lib/constants";
+
+const TYPING_WORDS = ["Full-Stack", "MERN Stack", "Python"];
 
 const Hero = () => {
-  const words = ["Full-Stack", "MERN Stack", "Python"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
 
+  // Typewriter effect: type the word, hold, delete, then move to the next.
+  // The timeout is always cleaned up so the effect can't race or leak.
   useEffect(() => {
-    if (isPaused) return;
+    const currentWord = TYPING_WORDS[currentWordIndex];
+    let timeoutId: number;
 
-    const currentWord = words[currentWordIndex];
-    const typingSpeed = isDeleting ? 100 : 150;
-    const pauseDuration = isDeleting ? 500 : 2000;
-
-    const timeout = setTimeout(() => {
-      if (!isDeleting && displayText === currentWord) {
-        // Start deleting after pause
-        setTimeout(() => setIsDeleting(true), pauseDuration);
-      } else if (isDeleting && displayText === "") {
-        // Move to next word
+    if (!isDeleting && displayText === currentWord) {
+      timeoutId = window.setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && displayText === "") {
+      timeoutId = window.setTimeout(() => {
         setIsDeleting(false);
-        setCurrentWordIndex((prev) => (prev + 1) % words.length);
-      } else {
-        // Typing logic
-        setDisplayText(
-          currentWord.substring(
-            0,
-            isDeleting ? displayText.length - 1 : displayText.length + 1,
-          ),
+        setCurrentWordIndex((prev) => (prev + 1) % TYPING_WORDS.length);
+      }, 500);
+    } else {
+      timeoutId = window.setTimeout(() => {
+        setDisplayText((prev) =>
+          isDeleting
+            ? currentWord.substring(0, prev.length - 1)
+            : currentWord.substring(0, prev.length + 1),
         );
-      }
-    }, typingSpeed);
+      }, isDeleting ? 100 : 150);
+    }
 
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentWordIndex, isPaused, words]);
+    return () => window.clearTimeout(timeoutId);
+  }, [displayText, isDeleting, currentWordIndex]);
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 relative overflow-hidden">
-      {/* Animated Background */}
+      {/* Soft background blobs (page-wide background is handled globally) */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100/85 via-slate-100/80 to-purple-100/85"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
         <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-pink-400/10 rounded-full blur-3xl transform -translate-x-1/2"></div>
@@ -53,16 +50,14 @@ const Hero = () => {
       <div className="container max-w-5xl mx-auto text-center relative">
         <AnimatedSection delay={0.1}>
           <div className="mb-6">
-            <motion.div
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              className="text-base sm:text-lg leading-relaxed text-foreground"
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="mb-4 text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent text-balance drop-shadow-sm sm:text-6xl md:text-7xl"
             >
-              <h1 className="text-5xl sm:text-5xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-                Diya Patel
-              </h1>
-            </motion.div>
+              Diya Patel
+            </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -98,12 +93,18 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-4 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/60"
+              className="mx-auto mt-5 inline-block max-w-full rounded-2xl border border-white/70 bg-white/60 px-5 py-3 shadow-sm backdrop-blur-sm"
             >
-              <p className="text-sm sm:text-base text-gray-600 italic">
+              <p className="min-h-[1.5rem] text-sm text-gray-600 italic sm:text-base">
                 Turning ideas into projects using{" "}
                 <span className="text-blue-600 font-semibold">
                   {displayText}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="animate-pulse text-blue-400"
+                >
+                  |
                 </span>
               </p>
             </motion.div>
@@ -121,11 +122,11 @@ const Hero = () => {
               <Button
                 variant="default"
                 size="lg"
-                className="gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg"
+                className="gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-600/25"
                 asChild
               >
                 <a
-                  href="https://github.com/diyahrp19"
+                  href={PERSONAL_INFO.github}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -139,11 +140,11 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
+                className="gap-3 border border-gray-300/80 bg-white/70 text-gray-700 backdrop-blur-sm hover:border-blue-300 hover:bg-white hover:text-blue-700"
                 asChild
               >
                 <a
-                  href="https://www.linkedin.com/in/diyapatel19"
+                  href={PERSONAL_INFO.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -157,10 +158,10 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
+                className="gap-3 border border-gray-300/80 bg-white/70 text-gray-700 backdrop-blur-sm hover:border-blue-300 hover:bg-white hover:text-blue-700"
                 asChild
               >
-                <a href="mailto:diyahrp05@gmail.com">
+                <a href={`mailto:${PERSONAL_INFO.email}`}>
                   <Mail className="w-5 h-5" />
                   Contact Me
                 </a>

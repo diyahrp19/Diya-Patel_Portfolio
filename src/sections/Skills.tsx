@@ -1,17 +1,16 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import type { LucideIcon } from "lucide-react";
 import {
   Code,
   Database,
   Server,
   Palette,
   GitBranch,
-  Smartphone,
-  Cloud,
   Zap,
 } from "lucide-react";
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "@/components/AnimatedSection";
+import SectionHeading from "@/components/SectionHeading";
 
 const Skills = () => {
   const skillCategories = [
@@ -41,19 +40,16 @@ const Skills = () => {
     },
   ];
 
-  const skillIcons = {
+  const skillIcons: Record<string, LucideIcon> = {
     "React.js": Code,
     JavaScript: Zap,
     HTML5: Code,
     CSS3: Palette,
     "Tailwind CSS": Palette,
-    "Responsive Design": Smartphone,
     "Node.js": Server,
     "Express.js": Server,
-    Django: Code,
     Python: Code,
     MongoDB: Database,
-    SQLite: Database,
     Git: GitBranch,
     GitHub: GitBranch,
     "VS Code": Code,
@@ -62,7 +58,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden"
+      className="py-20 sm:py-24 px-4 sm:px-6 relative overflow-hidden"
     >
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
@@ -71,30 +67,17 @@ const Skills = () => {
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container max-w-6xl mx-auto px-4">
-        <AnimatedSection delay={0.1}>
-          <div className="text-center mb-12 sm:mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                My Journey
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                Technologies and tools I work with to build modern, scalable web
-                applications
-              </p>
-            </motion.div>
-          </div>
-        </AnimatedSection>
+      <div className="container max-w-6xl mx-auto">
+        <SectionHeading
+          title="My Journey"
+          description="Technologies and tools I work with to build modern, scalable web applications"
+        />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
           {skillCategories.map((category, categoryIndex) => (
             <AnimatedSection
               key={category.title}
+              className="h-full"
               delay={0.2 + categoryIndex * 0.05}
             >
               <motion.div
@@ -102,9 +85,9 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="group"
+                className="group h-full"
               >
-                <Card className="border-2 border-gray-300/80 hover:border-gray-400/80 bg-white/60 backdrop-blur-sm hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 group min-h-[320px]">
+                <Card className="h-full rounded-2xl border border-gray-200/70 hover:border-blue-300/60 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 ease-out group">
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4">
                       <div
@@ -122,8 +105,7 @@ const Skills = () => {
                   <CardContent>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {category.skills.map((skill, skillIndex) => {
-                        const IconComponent =
-                          skillIcons[skill as keyof typeof skillIcons] || Code;
+                        const IconComponent = skillIcons[skill] || Code;
                         return (
                           <motion.div
                             key={skill}

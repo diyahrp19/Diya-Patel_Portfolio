@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 250 20% 15%;
 
-    --primary: 250 70% 65%;
+    --primary: 249 76% 53%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 250 60% 95%;
@@ -34,56 +34,9 @@ All colors MUST be HSL.
 
     --border: 250 30% 88%;
     --input: 250 30% 88%;
-    --ring: 250 70% 65%;
+    --ring: 249 76% 53%;
 
     --radius: 0.75rem;
-
-    --sidebar-background: 250 60% 98%;
-    --sidebar-foreground: 250 20% 15%;
-    --sidebar-primary: 250 70% 65%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 250 60% 95%;
-    --sidebar-accent-foreground: 250 20% 15%;
-    --sidebar-border: 250 30% 88%;
-    --sidebar-ring: 250 70% 65%;
-  }
-
-  .dark {
-    --background: 250 30% 8%;
-    --foreground: 250 20% 95%;
-
-    --card: 250 30% 10%;
-    --card-foreground: 250 20% 95%;
-
-    --popover: 250 30% 10%;
-    --popover-foreground: 250 20% 95%;
-
-    --primary: 250 70% 65%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 250 20% 15%;
-    --secondary-foreground: 250 20% 95%;
-
-    --muted: 250 20% 15%;
-    --muted-foreground: 250 10% 60%;
-
-    --accent: 250 30% 18%;
-    --accent-foreground: 250 70% 65%;
-
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 250 20% 18%;
-    --input: 250 20% 18%;
-    --ring: 250 70% 65%;
-    --sidebar-background: 250 30% 8%;
-    --sidebar-foreground: 250 20% 95%;
-    --sidebar-primary: 250 70% 65%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 250 20% 15%;
-    --sidebar-accent-foreground: 250 20% 95%;
-    --sidebar-border: 250 20% 15%;
-    --sidebar-ring: 250 70% 65%;
   }
 }
 
@@ -98,16 +51,31 @@ All colors MUST be HSL.
   h4,
   h5,
   h6 {
+    font-family: "Sora", "Inter", sans-serif;
     line-height: 1.2;
+    letter-spacing: -0.015em;
     padding-top: 0.05em;
     padding-bottom: 0.05em;
     overflow: visible;
     height: auto;
   }
 
+  html {
+    scroll-behavior: smooth;
+    /* Offset in-page anchor scrolling so headings clear the fixed navbar */
+    scroll-padding-top: 6rem;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.18);
   }
 }
 
@@ -152,4 +120,85 @@ All colors MUST be HSL.
 
 .animate-float-fast {
   animation: float-fast 10s ease-in-out infinite;
+}
+
+/* Circular pointer follower on project cards. It is purely decorative
+   (pointer-events-none in the markup) and only rendered on devices with a
+   fine pointer and a viewport of at least 768px, so touch devices and small
+   screens never see it and clicks are never blocked. */
+.project-card-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .project-card-cursor {
+    display: block;
+  }
+}
+
+/* Respect visitors who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-fast,
+  .project-card-cursor {
+    animation: none;
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Finishing touches: typography, scrollbar, and input polish.
+ * ------------------------------------------------------------------ */
+@layer base {
+  /* Balanced wrapping keeps multi-line headings visually even. */
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+
+  ::placeholder {
+    color: hsl(var(--muted-foreground) / 0.7);
+    opacity: 1;
+  }
+
+  /* Remove the gray flash on tap for touch devices. */
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Slim, brand-consistent scrollbar (WebKit). */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.35);
+  border: 2px solid hsl(var(--background));
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.55);
+}
+
+/* Firefox */
+* {
+  scrollbar-color: hsl(var(--muted-foreground) / 0.35) hsl(var(--background));
+  scrollbar-width: thin;
 }

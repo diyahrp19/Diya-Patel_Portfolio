@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 const ScrollToTop = () => {
@@ -7,14 +6,10 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 300);
     };
-
-    window.addEventListener("scroll", toggleVisibility);
+    toggleVisibility();
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
@@ -25,22 +20,23 @@ const ScrollToTop = () => {
     });
   };
 
+  // CSS transitions (not framer-motion) so mounting/unmounting animations
+  // never interfere with an in-flight smooth scroll.
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          transition={{ duration: 0.3 }}
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-300 z-50 group"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="w-6 h-6 mx-auto group-hover:translate-y-[-2px] transition-transform duration-300" />
-        </motion.button>
-      )}
-    </AnimatePresence>
+    <button
+      type="button"
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+      aria-hidden={!isVisible}
+      tabIndex={isVisible ? 0 : -1}
+      className={`group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300 ${
+        isVisible
+          ? "translate-y-0 scale-100 opacity-100"
+          : "pointer-events-none translate-y-5 scale-50 opacity-0"
+      }`}
+    >
+      <ArrowUp className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5" />
+    </button>
   );
 };
 
