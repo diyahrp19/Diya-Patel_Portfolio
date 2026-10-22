@@ -39,12 +39,12 @@ const Hero = () => {
   }, [displayText, isDeleting, currentWordIndex]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 relative overflow-hidden">
-      {/* Soft background blobs (page-wide background is handled globally) */}
+    <section className="min-h-screen flex items-center justify-center pt-28 pb-16 sm:pt-32 sm:pb-20 px-4 sm:px-6 relative overflow-hidden">
+      {/* Soft ambient glows (page-wide background is handled globally) */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-pink-400/10 rounded-full blur-3xl transform -translate-x-1/2"></div>
+        <div className="absolute top-24 left-10 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl"></div>
+        <div className="absolute top-40 right-10 h-96 w-96 rounded-full bg-violet-400/10 blur-3xl"></div>
+        <div className="absolute bottom-20 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-400/10 blur-3xl"></div>
       </div>
 
       <div className="container max-w-5xl mx-auto text-center relative">
@@ -54,7 +54,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="mb-4 text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent text-balance drop-shadow-sm sm:text-6xl md:text-7xl"
+              className="mb-4 text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent text-balance sm:text-6xl md:text-7xl"
             >
               Diya Patel
             </motion.h1>
@@ -62,7 +62,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg sm:text-xl text-gray-600 mb-2"
+              className="mb-3 text-lg font-medium text-muted-foreground sm:text-xl"
             >
               Information Technology Student
             </motion.p>
@@ -70,9 +70,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm text-gray-500 flex items-center justify-center gap-2"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1.5 text-xs text-muted-foreground shadow-soft backdrop-blur-sm sm:text-sm"
             >
-              <span className="inline-block w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></span>
+              <span aria-hidden="true" className="inline-block h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
               Ahmedabad, Gujarat
             </motion.div>
           </div>
@@ -93,16 +93,16 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mx-auto mt-5 inline-block max-w-full rounded-2xl border border-white/70 bg-white/60 px-5 py-3 shadow-sm backdrop-blur-sm"
+              className="mx-auto mt-6 inline-block max-w-full rounded-2xl border border-border bg-background/80 px-5 py-3 shadow-soft backdrop-blur-sm"
             >
-              <p className="min-h-[1.5rem] text-sm text-gray-600 italic sm:text-base">
+              <p className="min-h-[1.5rem] text-sm text-muted-foreground sm:text-base">
                 Turning ideas into projects using{" "}
                 <span className="text-blue-600 font-semibold">
                   {displayText}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="animate-pulse text-blue-400"
+                  className="animate-pulse text-blue-600"
                 >
                   |
                 </span>
@@ -122,7 +122,7 @@ const Hero = () => {
               <Button
                 variant="default"
                 size="lg"
-                className="gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-600/25"
+                className="gap-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white shadow-lg shadow-blue-600/20 transition-shadow hover:shadow-xl"
                 asChild
               >
                 <a
@@ -140,7 +140,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-3 border border-gray-300/80 bg-white/70 text-gray-700 backdrop-blur-sm hover:border-blue-300 hover:bg-white hover:text-blue-700"
+                className="gap-3 border border-border bg-background/80 text-foreground backdrop-blur-sm hover:border-primary/50 hover:bg-background hover:text-primary"
                 asChild
               >
                 <a
@@ -158,7 +158,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-3 border border-gray-300/80 bg-white/70 text-gray-700 backdrop-blur-sm hover:border-blue-300 hover:bg-white hover:text-blue-700"
+                className="gap-3 border border-border bg-background/80 text-foreground backdrop-blur-sm hover:border-primary/50 hover:bg-background hover:text-primary"
                 asChild
               >
                 <a href={`mailto:${PERSONAL_INFO.email}`}>
@@ -197,3 +197,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

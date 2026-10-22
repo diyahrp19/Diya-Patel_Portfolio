@@ -58,13 +58,12 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-20 sm:py-24 px-4 sm:px-6 relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 relative overflow-hidden"
     >
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100/85 via-slate-100/80 to-purple-100/85"></div>
-        <div className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-10 h-96 w-96 rounded-full bg-blue-400/10 blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 h-96 w-96 rounded-full bg-violet-400/10 blur-3xl"></div>
       </div>
 
       <div className="container max-w-6xl mx-auto">
@@ -87,16 +86,16 @@ const Skills = () => {
                 transition={{ duration: 0.4 }}
                 className="group h-full"
               >
-                <Card className="h-full rounded-2xl border border-gray-200/70 hover:border-blue-300/60 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 ease-out group">
+                <Card className="h-full rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-lifted group">
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4">
                       <div
-                        className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                        className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-xl flex items-center justify-center text-white shadow-md shadow-black/10 transition-transform duration-300 group-hover:scale-110`}
                       >
                         <category.icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <CardTitle className="text-xl font-bold text-gray-900">
+                        <CardTitle className="text-lg font-semibold text-foreground sm:text-xl">
                           {category.title}
                         </CardTitle>
                       </div>
@@ -118,9 +117,9 @@ const Skills = () => {
                             }}
                             className="group/skill"
                           >
-                            <div className="bg-gradient-to-r from-white to-gray-50/50 rounded-lg p-4 border border-gray-200/50 hover:border-gray-300/50 transition-all duration-300 group-hover/skill:shadow-md text-center">
-                              <IconComponent className="w-6 h-6 mx-auto mb-2 text-gray-600 group-hover/skill:text-blue-600 transition-colors" />
-                              <span className="font-medium text-gray-900 text-sm">
+                            <div className="rounded-xl border border-border bg-card p-4 text-center transition-all duration-300 group-hover/skill:-translate-y-0.5 group-hover/skill:border-primary/30 group-hover/skill:shadow-soft">
+                              <IconComponent className="w-6 h-6 mx-auto mb-2 text-muted-foreground transition-colors group-hover/skill:text-blue-600" />
+                              <span className="font-medium text-foreground text-sm">
                                 {skill}
                               </span>
                             </div>
@@ -140,3 +139,4 @@ const Skills = () => {
 };
 
 export default Skills;
+

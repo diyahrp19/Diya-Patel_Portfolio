@@ -194,8 +194,13 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           onPointerEnter={handlePointerEnter}
           onPointerMove={handlePointerMove}
           onPointerLeave={handlePointerLeave}
-          className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/70 bg-white/70 shadow-sm backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-blue-300/60 hover:shadow-xl hover:shadow-blue-500/10"
+          className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-lifted"
         >
+          {/* Accent line that fades in along the card's top edge on hover. */}
+          <div
+            aria-hidden="true"
+            className={`absolute inset-x-0 top-0 z-10 h-0.5 bg-gradient-to-r ${project.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+          ></div>
           {/* Circular pointer follower — a fixed-size, perfectly symmetric
               circle (width === height, centered via negative margins so the
               framer-motion x/y transform never fights a CSS translate).
@@ -231,20 +236,20 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               <div className="min-w-0 flex-1">
                 <div className="mb-2 flex items-center gap-3">
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r ${project.color} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r ${project.color} text-white shadow-md shadow-black/10 transition-transform duration-300 group-hover:scale-110`}
                   >
                     <ProjectIcon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <CardTitle className="text-xl font-bold tracking-tight text-gray-900 transition-colors group-hover:text-blue-600 sm:text-2xl">
+                    <CardTitle className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-blue-600 sm:text-2xl">
                       {project.title}
                     </CardTitle>
-                    <CardDescription className="mt-1 text-sm text-gray-600">
+                    <CardDescription className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/60">
                       {project.category}
                     </CardDescription>
                   </div>
                 </div>
-                <p className="text-sm leading-relaxed text-pretty text-gray-700 sm:text-base">
+                <p className="text-sm leading-relaxed text-pretty text-muted-foreground sm:text-[15px]">
                   {project.description}
                 </p>
               </div>
@@ -259,7 +264,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                       variant="default"
                       size="sm"
                       asChild
-                      className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg"
+                      className="bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-md shadow-blue-600/20 hover:from-blue-700 hover:to-violet-700 hover:shadow-lg"
                     >
                       <a
                         href={project.demo}
@@ -281,7 +286,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                     variant="outline"
                     size="sm"
                     asChild
-                    className="border border-gray-300/80 bg-white/70 text-gray-700 hover:border-blue-300 hover:bg-white hover:text-blue-700"
+                    className="border border-border bg-background/80 text-foreground hover:border-primary/50 hover:bg-card hover:text-primary"
                   >
                     <a
                       href={project.github}
@@ -302,8 +307,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <CardContent className="relative z-10 flex flex-1 flex-col pt-0">
             <div className="space-y-4 flex-1 flex flex-col">
               <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <Code className="w-4 h-4 text-blue-600" />
+                <h4 className="text-[13px] font-semibold text-foreground mb-2.5 flex items-center gap-2">
+                  <Code className="w-4 h-4 text-blue-600" aria-hidden="true" />
                   Key Features
                 </h4>
                 <ul className="grid grid-cols-1 gap-2">
@@ -314,9 +319,12 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: idx * 0.1 }}
-                      className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50/50 rounded-lg p-2 group-hover:bg-gray-50 transition-colors"
+                      className="flex items-center gap-2.5 rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm text-muted-foreground transition-colors group-hover:bg-muted"
                     >
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                      <div
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"
+                      ></div>
                       {feature}
                     </motion.li>
                   ))}
@@ -324,8 +332,11 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               </div>
 
               <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <Database className="w-4 h-4 text-green-600" />
+                <h4 className="text-[13px] font-semibold text-foreground mb-2.5 flex items-center gap-2">
+                  <Database
+                    className="w-4 h-4 text-emerald-600"
+                    aria-hidden="true"
+                  />
                   Tech Stack
                 </h4>
                 {/* min-height reserves two badge rows so every card's stack
@@ -348,9 +359,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                       >
                         <Badge
                           variant="outline"
-                          className="text-xs bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 text-gray-700 hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center gap-1.5 px-3 py-1.5"
+                          className="flex items-center gap-1.5 rounded-full border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-blue-300 hover:bg-blue-50/50 hover:text-blue-700"
                         >
-                          <TechIcon className="w-3.5 h-3.5" />
+                          <TechIcon className="w-3.5 h-3.5" aria-hidden="true" />
                           {tech}
                         </Badge>
                       </motion.div>
@@ -359,10 +370,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-gray-200/50 mt-auto">
+              <div className="mt-auto flex items-center justify-between border-t border-border pt-4">
                 <Badge
                   variant="secondary"
-                  className={`bg-gradient-to-r ${project.color} text-white px-3 py-1 text-xs font-medium`}
+                  className={`bg-gradient-to-r ${project.color} px-3 py-1 text-xs font-medium text-white shadow-sm shadow-black/5`}
                 >
                   {project.stack}
                 </Badge>
@@ -465,13 +476,12 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 sm:py-24 px-4 sm:px-6 relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 relative overflow-hidden"
     >
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100/85 via-slate-100/80 to-purple-100/85"></div>
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-10 w-96 h-96 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-gradient-to-br from-green-400/10 to-emerald-400/10 rounded-full blur-3xl transform -translate-x-1/2"></div>
+        <div className="absolute top-20 left-10 h-96 w-96 rounded-full bg-blue-400/10 blur-3xl"></div>
+        <div className="absolute top-40 right-10 h-96 w-96 rounded-full bg-violet-400/10 blur-3xl"></div>
+        <div className="absolute bottom-20 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-400/10 blur-3xl"></div>
       </div>
 
       <div className="container max-w-6xl mx-auto">
@@ -495,4 +505,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
 

@@ -8,32 +8,35 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 250 60% 98%;
-    --foreground: 250 20% 15%;
+    /* Neutrals: cool, near-white canvas with deep slate ink for a calm,
+       professional base. */
+    --background: 240 33% 99%;
+    --foreground: 224 36% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 250 20% 15%;
+    --card-foreground: 224 36% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 250 20% 15%;
+    --popover-foreground: 224 36% 10%;
 
+    /* Brand accent: indigo/violet (existing hue, unchanged). */
     --primary: 249 76% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 250 60% 95%;
-    --secondary-foreground: 250 20% 15%;
+    --secondary: 240 20% 96%;
+    --secondary-foreground: 224 36% 10%;
 
-    --muted: 250 30% 94%;
-    --muted-foreground: 250 10% 45%;
+    --muted: 240 16% 94%;
+    --muted-foreground: 222 11% 45%;
 
-    --accent: 250 70% 92%;
-    --accent-foreground: 250 70% 30%;
+    --accent: 245 60% 96%;
+    --accent-foreground: 249 76% 45%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 250 30% 88%;
-    --input: 250 30% 88%;
+    --border: 240 16% 89%;
+    --input: 240 16% 89%;
     --ring: 249 76% 53%;
 
     --radius: 0.75rem;
@@ -52,12 +55,23 @@ All colors MUST be HSL.
   h5,
   h6 {
     font-family: "Sora", "Inter", sans-serif;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    padding-top: 0.05em;
-    padding-bottom: 0.05em;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
     overflow: visible;
     height: auto;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    letter-spacing: -0.025em;
+  }
+
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
   }
 
   html {
@@ -69,6 +83,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: "Inter", sans-serif;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -76,6 +91,7 @@ All colors MUST be HSL.
 
   ::selection {
     background-color: hsl(var(--primary) / 0.18);
+    color: hsl(var(--foreground));
   }
 }
 
@@ -161,8 +177,9 @@ All colors MUST be HSL.
     text-wrap: balance;
   }
 
-  h1 {
-    letter-spacing: -0.03em;
+  /* Pretty wrapping avoids awkward single-word last lines in paragraphs. */
+  p {
+    text-wrap: pretty;
   }
 
   ::placeholder {

@@ -45,14 +45,14 @@ const Navigation = () => {
   }, []);
 
   const linkClasses = (id: string, isMobile = false) =>
-    `rounded-lg font-medium transition-all ${
+    `rounded-xl font-medium transition-colors duration-200 ${
       isMobile
         ? "w-full justify-start px-4 py-3 text-base"
-        : "px-3 sm:px-4 text-sm sm:text-base"
+        : "px-3.5 sm:px-4 text-sm sm:text-[15px]"
     } ${
       activeSection === id
-        ? "bg-blue-50/80 font-semibold text-blue-700 shadow-sm"
-        : "text-gray-700 hover:bg-blue-50/50 hover:text-blue-600"
+        ? "bg-primary/10 font-semibold text-primary"
+        : "text-muted-foreground hover:bg-muted hover:text-foreground"
     }`;
 
   return (
@@ -60,8 +60,8 @@ const Navigation = () => {
       aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "border-b border-gray-200/60 bg-white/85 shadow-sm backdrop-blur-lg"
-          : "border-b border-transparent bg-white/45 backdrop-blur-sm"
+          ? "border-b border-border bg-background/90 shadow-soft backdrop-blur-xl"
+          : "border-b border-transparent bg-background/60 backdrop-blur-md"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 py-4">
@@ -73,7 +73,7 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
             onClick={() => scrollToSection("home")}
-            className="flex-shrink-0 cursor-pointer text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent sm:text-2xl"
+            className="flex-shrink-0 cursor-pointer rounded-lg text-xl font-bold font-display bg-gradient-to-r from-blue-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:text-2xl"
             aria-label="Diya Patel — scroll to top"
           >
             Diya Patel
@@ -104,7 +104,7 @@ const Navigation = () => {
           </div>
 
           {/* Right: Social icons */}
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-1 md:flex">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" size="icon" asChild>
                 <a
@@ -113,7 +113,7 @@ const Navigation = () => {
                   rel="noopener noreferrer"
                   aria-label="GitHub profile"
                 >
-                  <Github className="w-5 h-5 text-gray-700 transition-colors hover:text-blue-600" />
+                  <Github className="w-5 h-5 text-muted-foreground transition-colors hover:text-foreground" />
                 </a>
               </Button>
             </motion.div>
@@ -125,7 +125,7 @@ const Navigation = () => {
                   rel="noopener noreferrer"
                   aria-label="LinkedIn profile"
                 >
-                  <Linkedin className="w-5 h-5 text-gray-700 transition-colors hover:text-blue-600" />
+                  <Linkedin className="w-5 h-5 text-muted-foreground transition-colors hover:text-foreground" />
                 </a>
               </Button>
             </motion.div>
@@ -135,7 +135,7 @@ const Navigation = () => {
                   href={`mailto:${PERSONAL_INFO.email}`}
                   aria-label="Send email"
                 >
-                  <Mail className="w-5 h-5 text-gray-700 transition-colors hover:text-blue-600" />
+                  <Mail className="w-5 h-5 text-muted-foreground transition-colors hover:text-foreground" />
                 </a>
               </Button>
             </motion.div>
@@ -171,7 +171,7 @@ const Navigation = () => {
           }`}
         >
           <div className="overflow-hidden">
-            <div className="mt-4 flex flex-col gap-1 border-t border-gray-200/50 pb-4">
+            <div className="mt-4 flex flex-col gap-1 border-t border-border pb-4 pt-4">
               {NAV_ITEMS.map((item) => (
                 <Button
                   key={item.id}

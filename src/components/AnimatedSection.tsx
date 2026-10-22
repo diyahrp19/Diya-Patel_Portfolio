@@ -29,7 +29,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       whileInView={variants ? "visible" : { opacity: 1, y: 0 }}
       variants={variants}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.3, delay }}
+      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

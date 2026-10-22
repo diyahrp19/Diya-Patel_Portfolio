@@ -70,12 +70,12 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 sm:py-24 px-4 sm:px-6 relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 relative overflow-hidden"
     >
-      {/* Soft background blobs (page-wide background is handled globally) */}
+      {/* Soft ambient glows (page-wide background is handled globally) */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-emerald-500/15 to-teal-500/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-10 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 h-96 w-96 rounded-full bg-violet-500/10 blur-3xl"></div>
       </div>
 
       <div className="container max-w-6xl mx-auto">
@@ -86,9 +86,11 @@ const Contact = () => {
 
         <AnimatedSection delay={0.15} variants={contactCardVariants}>
           <div className="mx-auto max-w-3xl">
-            <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-6 shadow-md backdrop-blur-sm sm:p-8">
-              <h3 className="text-2xl font-bold text-gray-900">Get In Touch</h3>
-              <p className="mt-1 text-gray-600">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
+              <h3 className="text-xl font-bold text-foreground sm:text-2xl">
+                Get In Touch
+              </h3>
+              <p className="mt-1 text-muted-foreground">
                 Reach out through any of the channels below — I'll get back to
                 you as soon as I can.
               </p>
@@ -105,23 +107,23 @@ const Contact = () => {
                       href={channel.href}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noopener noreferrer" : undefined}
-                      className="group flex items-center gap-4 rounded-xl border border-gray-200/70 bg-gradient-to-r from-white to-gray-50/50 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-lg"
+                      className="group flex items-center gap-4 rounded-xl border border-border bg-muted/50 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-card hover:shadow-soft"
                     >
                       <div
-                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r ${channel.color} text-white shadow-md transition-transform duration-300 group-hover:scale-110`}
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r ${channel.color} text-white shadow-md shadow-black/10 transition-transform duration-300 group-hover:scale-110`}
                       >
                         <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="font-semibold text-gray-900">
+                        <h4 className="font-semibold text-foreground">
                           {channel.title}
                         </h4>
-                        <p className="truncate text-sm text-gray-600">
+                        <p className="truncate text-sm text-muted-foreground">
                           {channel.value}
                         </p>
                       </div>
                       <ArrowUpRight
-                        className="h-5 w-5 shrink-0 text-gray-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-600"
+                        className="h-5 w-5 shrink-0 text-muted-foreground/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-600"
                         aria-hidden="true"
                       />
                     </motion.a>
@@ -129,8 +131,8 @@ const Contact = () => {
                 })}
               </div>
 
-              <p className="mt-6 flex items-center justify-center gap-2 border-t border-gray-200/70 pt-5 text-sm text-gray-600">
-                <MapPin className="h-4 w-4 text-gray-400" aria-hidden="true" />
+              <p className="mt-6 flex items-center justify-center gap-2 border-t border-border pt-5 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4 text-muted-foreground/60" aria-hidden="true" />
                 {PERSONAL_INFO.location}
               </p>
             </div>
@@ -146,56 +148,69 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <div className="bg-gradient-to-r from-blue-100/55 to-purple-100/55 rounded-2xl p-8 border border-gray-300/50">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Let's Build Something Amazing
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Ready to start your project? I'm excited to help bring your
-                ideas to life.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href={`mailto:${PERSONAL_INFO.email}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg shadow-blue-600/25 hover:shadow-xl transition-all duration-300"
-                >
-                  <Mail className="w-4 h-4" />
-                  Send Email
-                </motion.a>
-                <motion.a
-                  href="#projects"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 border border-gray-300/80 bg-white/70 text-gray-700 px-6 py-3 rounded-lg font-semibold backdrop-blur-sm hover:border-blue-300 hover:bg-white hover:text-blue-700 transition-all duration-300"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft">
+              {/* Soft brand glows inside the CTA panel. */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-24 right-[-10%] h-56 w-56 rounded-full bg-blue-400/15 blur-3xl"
+              ></div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-24 left-[-10%] h-56 w-56 rounded-full bg-violet-400/15 blur-3xl"
+              ></div>
+
+              <div className="relative">
+                <h3 className="text-xl font-bold text-foreground sm:text-2xl">
+                  Let's Build Something Amazing
+                </h3>
+                <p className="mt-2 text-muted-foreground">
+                  Ready to start your project? I'm excited to help bring your
+                  ideas to life.
+                </p>
+                <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
+                  <motion.a
+                    href={`mailto:${PERSONAL_INFO.email}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-3 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-600/20 transition-shadow duration-300 hover:shadow-xl"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                  View Projects
-                </motion.a>
+                    <Mail className="w-4 h-4" aria-hidden="true" />
+                    Send Email
+                  </motion.a>
+                  <motion.a
+                    href="#projects"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-3 rounded-lg border border-border bg-background/80 px-6 py-3 font-semibold text-foreground backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card hover:text-primary"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
+                    </svg>
+                    View Projects
+                  </motion.a>
+                </div>
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-gray-200/50">
-              <p className="text-sm text-gray-600">
+            <div className="mt-8 border-t border-border pt-6">
+              <p className="text-sm text-muted-foreground">
                 © {new Date().getFullYear()} Diya Patel. Built with React,
                 TypeScript, and Tailwind CSS.
               </p>
@@ -208,3 +223,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

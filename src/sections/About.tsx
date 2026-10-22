@@ -38,7 +38,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-20 sm:py-24 px-4 sm:px-6 relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 px-4 sm:px-6 relative overflow-hidden"
     >
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10">
@@ -70,20 +70,20 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
               >
-                <Card className="group flex h-full flex-col rounded-2xl border border-gray-200/70 hover:border-blue-300/60 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 ease-out">
+                <Card className="group flex h-full flex-col rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 ease-out hover:-translate-y-1 hover:border-border/60 hover:shadow-lifted">
                   <CardContent className="flex flex-1 flex-col pt-6">
                     <div
-                      className={`mb-4 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r ${stat.color} group-hover:scale-110 transition-transform duration-300`}
+                      className={`mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r ${stat.color} shadow-md shadow-black/10 transition-transform duration-300 group-hover:scale-110`}
                     >
-                      <stat.icon className="h-7 w-7 text-white" />
+                      <stat.icon className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900">
+                    <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground/70">
                       {stat.label}
-                    </h3>
-                    <p className="mb-2 min-h-[4rem] text-2xl font-bold text-gray-800 text-balance">
-                      {stat.value}
                     </p>
-                    <p className="mt-auto text-sm text-gray-600">
+                    <h3 className="mb-2 min-h-[3.5rem] text-lg font-semibold leading-snug text-foreground text-balance">
+                      {stat.value}
+                    </h3>
+                    <p className="mt-auto text-sm text-muted-foreground">
                       {stat.description}
                     </p>
                   </CardContent>
@@ -102,40 +102,40 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="group rounded-2xl border border-gray-200/70 hover:border-blue-300/60 bg-gradient-to-br from-white to-gray-50/50 shadow-md hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 ease-out">
+              <Card className="group rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 ease-out hover:-translate-y-1 hover:border-border/60 hover:shadow-lifted">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-bold text-gray-900">
+                  <CardTitle className="text-xl font-bold text-foreground sm:text-2xl">
                     My Journey
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-muted-foreground">
                     Building the future, one line of code at a time
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="space-y-4 text-center">
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     My expertise lies in building scalable and efficient web
                     applications using modern technologies like the{" "}
                     <span className="font-semibold text-blue-600">
                       MERN Stack
                     </span>
                     (MongoDB, Express.js, React.js, Node.js) and
-                    <span className="font-semibold text-purple-600">
+                    <span className="font-semibold text-violet-600">
                       {" "}
                       Python
                     </span>
                     .
                   </p>
 
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     I believe in writing clean, maintainable code and creating
                     user experiences that are both functional and intuitive.
                     Currently, I'm focused on expanding my knowledge and skills
                     in full-stack web development.
                   </p>
 
-                  <div className="flex justify-center items-center gap-2 text-sm text-gray-600">
-                    <Rocket className="w-4 h-4 text-blue-600" />
+                  <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-sm text-muted-foreground">
+                    <Rocket className="h-4 w-4 text-blue-600" aria-hidden="true" />
                     <span>Always learning, always building</span>
                   </div>
                 </CardContent>
@@ -149,3 +149,4 @@ const About = () => {
 };
 
 export default About;
+
